@@ -23,6 +23,7 @@ export default class IndexRoute extends Route {
             alltodayDeaths += dataCountries.todayDeaths;
             alltotalCritical += dataCountries.active;
             allcasesPerOneMillion += dataCountries.casesPerOneMillion;
+
         });
         // console.log(" Hoy: ", alltodayCases, " Muertos: ", alltodayDeaths, " Criticos: ", alltotalCritical, " Pormillon: ", allcasesPerOneMillion)
 
@@ -30,23 +31,32 @@ export default class IndexRoute extends Route {
             {
                 title: "Infections",
                 data: dataAll.cases,
-                today: alltodayCases + " today"
+                today: alltodayCases + " today",
+                rateTitle: "Recovery Rate",
+                rate: "79.15%"
             },
             {
                 title: "Deaths",
                 data: dataAll.deaths,
-                today: alltodayDeaths + " today"
+                today: alltodayDeaths + " today",
+                rateTitle: "Death Rate",
+                rate: "20.85%"
             },
             {
-                title: "Deaths",
+                title: "Recoveries",
                 data: dataAll.recovered,
-                today: alltotalCritical + " remaining"
+                today: alltotalCritical + " remaining",
+                rateTitle: "Critical Rate",
+                rate: "4.77%"
             }
             ,
             {
                 title: "Critical",
-                data: dataAll.recovered,
-                today: allcasesPerOneMillion + " per million"
+                data: alltotalCritical,
+                today: allcasesPerOneMillion + " per million",
+                rateTitle: "Nations Affected",
+                rate: "211"
+
             }];
 
     }

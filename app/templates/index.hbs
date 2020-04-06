@@ -5,7 +5,6 @@
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
                 <div class="card-header">{{ model.title }}</div>
                 <div class="card-body">
-                    <h5 class="card-title">Casos</h5>
                     <p class="card-text">{{ model.data }}</p>
                     <p class="card-text">{{ model.today }}</p>
                 </div>
@@ -69,14 +68,14 @@
     <div class="col-md-12 col-lg-4 card text-white bg-dark mb-3">
         <canvas id="myChartpie"></canvas>
     </div>
-    <div class="col-6">
+    <div class="col-md-12 col-lg-6 ">
         <div class="row">
             {{#each @model as |model|}}
             <div class="col-6">
-                <div class="card">
-                    <h5 class="card-title">Card title</h5>
+                <div class="card text-white bg-dark mb-3">
+                    <h5 class="card-title">{{ model.rateTitle}}</h5>
                     <div class="card-body">
-                        This is some text within a card body.
+                        {{ model.rate}}
                     </div>
                 </div>
             </div>
@@ -114,11 +113,11 @@
 
         // The data for our dataset
         data: {
-            labels: ['Active', 'Recovered', 'Death', 'Critical'],
+            labels: ['USA', 'Spain', 'Italy', 'Germany'],
             datasets: [{
                 label: 'My First dataset',
                 backgroundColor: ['rgb(241, 148, 138 )', 'rgb(72, 201, 176 )', 'rgb(133, 193, 233)', 'rgb(248, 196, 113 )'],
-                data: [1, 2, 3, 4]
+                data: [352, 135, 132, 101]
             }]
         },
 
