@@ -1,14 +1,261 @@
-<div class="row">
-    {{#each @model as |model|}}
-    <div class="col-3">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">{{ model.title }}</div>
-            <div class="card-body">
-                <h5 class="card-title">Casos</h5>
-                <p class="card-text">{{ model.data }}</p>
-                <p class="card-text">{{ model.today }}</p>
+<div class="container">
+    <div class="row">
+        {{#each @model as |model|}}
+        <div class="col-3 p-2">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">{{ model.title }}</div>
+                <div class="card-body">
+                    <h5 class="card-title">Casos</h5>
+                    <p class="card-text">{{ model.data }}</p>
+                    <p class="card-text">{{ model.today }}</p>
+                </div>
             </div>
         </div>
+        {{/each}}
     </div>
-    {{/each}}
 </div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-4 card text-white bg-dark mb-3">
+        <form class="">
+            <div class="row">
+                <div class="col-6">
+                    <h4>Affected Countries</h4>
+                    <div class="form-group">
+                        <input type="search" class="form-control" id="search"
+                            placeholder="Search 211 Affected Countries">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <p>Today's Statistics</p>
+                    <select class="form-control">
+                        <option>Sort By</option>
+                        <option>Total Cases</option>
+                        <option>Today Cases</option>
+                        <option>Total Deaths</option>
+                        <option>Today Deaths</option>
+                        <option>Today Recoveries</option>
+                    </select>
+                </div>
+            </div>
+
+        </form>
+        <div class="list-group bg-dark" id="list-tab" role="tablist">
+            <a class="list-group-item list-group-item-action active bg-dark" id="list-home-list" data-toggle="list"
+                href="#list-home" role="tab" aria-controls="home">USA</a>
+            <a class="list-group-item list-group-item-action bg-dark" id="list-profile-list" data-toggle="list"
+                href="#list-profile" role="tab" aria-controls="profile">UK</a>
+            <a class="list-group-item list-group-item-action bg-dark" id="list-messages-list" data-toggle="list"
+                href="#list-messages" role="tab" aria-controls="messages">Italy</a>
+            <a class="list-group-item list-group-item-action bg-dark" id="list-settings-list" data-toggle="list"
+                href="#list-settings" role="tab" aria-controls="settings">Spain</a>
+        </div>
+    </div>
+    <div class="col-md-12 col-lg-6">
+        <div id="map"></div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-4 card text-white bg-dark mb-3">
+        <canvas id="myChart"></canvas>
+    </div>
+    <div class="col-md-12 col-lg-6">
+        <canvas id="myChartline"></canvas>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-4 card text-white bg-dark mb-3">
+        <canvas id="myChartpie"></canvas>
+    </div>
+    <div class="col-6">
+        <div class="row">
+            {{#each @model as |model|}}
+            <div class="col-6">
+                <div class="card">
+                    <h5 class="card-title">Card title</h5>
+                    <div class="card-body">
+                        This is some text within a card body.
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+</div>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'doughnut',
+
+        // The data for our dataset
+        data: {
+            labels: ['Active', 'Recovered', 'Death', 'Critical'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: ['rgb(241, 148, 138 )', 'rgb(72, 201, 176 )', 'rgb(133, 193, 233)', 'rgb(248, 196, 113 )'],
+                data: [1, 2, 3, 4]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('myChartpie').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+
+        // The data for our dataset
+        data: {
+            labels: ['Active', 'Recovered', 'Death', 'Critical'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: ['rgb(241, 148, 138 )', 'rgb(72, 201, 176 )', 'rgb(133, 193, 233)', 'rgb(248, 196, 113 )'],
+                data: [1, 2, 3, 4]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('myChartline').getContext('2d');
+    var chart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'line',
+
+        // The data for our dataset
+        data: {
+            labels: ['Active', 'Recovered', 'Death', 'Critical'],
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: ['rgba(0, 0, 0, 0.1)'],
+                borderColor: 'rgb(255, 99, 132)',
+                data: [{
+                    x: 10,
+                    y: 20
+                }, {
+                    x: 15,
+                    y: 10
+                }]
+            }]
+        },
+
+        // Configuration options go here
+        options: {}
+    });
+</script>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibHVpc2ZheXJlIiwiYSI6ImNrOG1vdjE2NTBwMDQzbG56ZXZvcXdiZnoifQ.Iyh7V-lcqT2S38dfU3aAXQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9'
+    });
+
+    var size = 200;
+
+    // implementation of CustomLayerInterface to draw a pulsing dot icon on the map
+    // see https://docs.mapbox.com/mapbox-gl-js/api/#customlayerinterface for more info
+    var pulsingDot = {
+        width: size,
+        height: size,
+        data: new Uint8Array(size * size * 4),
+
+        // get rendering context for the map canvas when layer is added to the map
+        onAdd: function () {
+            var canvas = document.createElement('canvas');
+            canvas.width = this.width;
+            canvas.height = this.height;
+            this.context = canvas.getContext('2d');
+        },
+
+        // called once before every frame where the icon will be used
+        render: function () {
+            var duration = 1000;
+            var t = (performance.now() % duration) / duration;
+
+            var radius = (size / 2) * 0.3;
+            var outerRadius = (size / 2) * 0.7 * t + radius;
+            var context = this.context;
+
+            // draw outer circle
+            context.clearRect(0, 0, this.width, this.height);
+            context.beginPath();
+            context.arc(
+                this.width / 2,
+                this.height / 2,
+                outerRadius,
+                0,
+                Math.PI * 2
+            );
+            context.fillStyle = 'rgba(255, 200, 200,' + (1 - t) + ')';
+            context.fill();
+
+            // draw inner circle
+            context.beginPath();
+            context.arc(
+                this.width / 2,
+                this.height / 2,
+                radius,
+                0,
+                Math.PI * 2
+            );
+            context.fillStyle = 'rgba(255, 100, 100, 1)';
+            context.strokeStyle = 'white';
+            context.lineWidth = 2 + 4 * (1 - t);
+            context.fill();
+            context.stroke();
+
+            // update this image's data with data from the canvas
+            this.data = context.getImageData(
+                0,
+                0,
+                this.width,
+                this.height
+            ).data;
+
+            // continuously repaint the map, resulting in the smooth animation of the dot
+            map.triggerRepaint();
+
+            // return `true` to let the map know that the image was updated
+            return true;
+        }
+    };
+
+    map.on('load', function () {
+        map.addImage('pulsing-dot', pulsingDot, { pixelRatio: 2 });
+
+        map.addSource('points', {
+            'type': 'geojson',
+            'data': {
+                'type': 'FeatureCollection',
+                'features': [
+                    {
+                        'type': 'Feature',
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [0, 0]
+                        }
+                    }
+                ]
+            }
+        });
+        map.addLayer({
+            'id': 'points',
+            'type': 'symbol',
+            'source': 'points',
+            'layout': {
+                'icon-image': 'pulsing-dot'
+            }
+        });
+    });
+</script>
