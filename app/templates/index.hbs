@@ -1,30 +1,14 @@
 <div class="row">
+    {{#each @model as |model|}}
     <div class="col-3">
         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Casos</div>
+            <div class="card-header">{{ model.title }}</div>
             <div class="card-body">
                 <h5 class="card-title">Casos</h5>
-                <p class="card-text">{{@model.cases}}</p>
+                <p class="card-text">{{ model.data }}</p>
+                <p class="card-text">{{ model.today }}</p>
             </div>
         </div>
     </div>
-    <div class="col-3">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Muertos</div>
-            <div class="card-body">
-                <h5 class="card-title">Muertos</h5>
-                <p class="card-text">{{@model.deaths}}</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Recuperados</div>
-            <div class="card-body">
-                <h5 class="card-title">Recuperados</h5>
-                <p class="card-text">{{@model.recovered}}</p>
-            </div>
-        </div>
-    </div>
-
+    {{/each}}
 </div>
